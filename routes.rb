@@ -7,7 +7,7 @@ module Prey
 
   class Standalone < Sinatra::Base
 
-    get '/:id' do
+    get '/:id.xml' do
       if device = Device.find(params[:id])
         content_type 'text/xml'
         status device.missing? ? 404 : 200
