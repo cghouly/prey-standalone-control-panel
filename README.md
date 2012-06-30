@@ -31,18 +31,10 @@ change it by modifying config.ru if you want to.
 
 ## Setting up the clients
 
-Once you've created a device on the admin panel, the check URL on the device
-should be:
+Edit the config file and add your server to the check_url variable
 
 ```
-http://your.server.com/check/:device_id
-```
-
-For example, if the ID of your newly created device is 000000123456, the full
-url should look like:
-
-```
-http://your.server.com/check/000000123456
+check_url='http://your.server.com'
 ```
 
 And that's it. Your device should now start checking its state against your own
