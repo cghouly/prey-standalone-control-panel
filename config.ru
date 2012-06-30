@@ -9,7 +9,7 @@ map "/devices" do
   run Prey::Standalone
 end
 
-map "/" do
+map "/login" do
   BOWTIE_AUTH = {:user => 'admin', :pass => 'secret'}
   run Bowtie::Admin
 end
