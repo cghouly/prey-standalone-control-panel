@@ -5,7 +5,7 @@ require 'models'
 require 'routes'
 require 'bowtie'
 
-map "/check" do
+map "/devices" do
   run Prey::Standalone
 end
 
