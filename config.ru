@@ -13,3 +13,7 @@ map "/login" do
   BOWTIE_AUTH = {:user => 'admin', :pass => 'secret'}
   run Bowtie::Admin
 end
+
+map "/" do
+  run Prey::Check_Update
+end
