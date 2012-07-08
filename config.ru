@@ -6,7 +6,7 @@ require 'routes'
 require 'bowtie'
 
 map "/devices" do
-  run Prey::Standalone
+  run Prey::Setup_Verify
 end
 
 map "/login" do
