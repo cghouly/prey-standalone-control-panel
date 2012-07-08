@@ -5,7 +5,7 @@ module Prey
 
   REPORT_MODULES = %w(geo network session webcam)
 
-  class Standalone < Sinatra::Base
+  class Setup_Verify < Sinatra::Base
 
     get '/:id.xml' do
       if device = Device.find(params[:id])
