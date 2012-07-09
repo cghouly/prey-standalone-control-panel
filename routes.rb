@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'builder'
+require 'securerandom'
 
 module Prey
 
