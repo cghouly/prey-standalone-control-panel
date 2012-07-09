@@ -5,6 +5,64 @@ module Prey
 
   REPORT_MODULES = %w(geo network session webcam)
 
+  class Check_Update < Sinatra::Base
+
+    post '/devices.xml' do
+
+      newDevice = Device.new
+
+      newDevice.name = params[:device][:title]
+      newDevice.device_type = params[:device][:device_type]
+      newDevice.os_version = params[:device][:os_version]
+      newDevice.os = params[:device][:os]
+      newDevice.key = SecureRandom.hex(12)
+      newDevice.save
+      generate_xml(newDevice)
+      
+    end
+
+    get '/devices.xml' do
+      content_type 'text/xml'
+
+      key = 200
+
+      Device.all.each do |device|
+
+        if device.key == nil
+          key = 401
+        end
+      end
+
+      status key
+
+      builder do |xml|
+        xml.instruct!
+        xml.devices do
+
+          Device.all.each do |device|
+            #generate_xml(device) #NOT WORKING
+            xml.device do
+              xml.key device.key
+              xml.state device.missing
+              xml.title device.name
+            end
+          end
+        end
+      end
+    end
+
+    def generate_xml(device)
+      builder do |xml|
+        xml.instruct!
+        xml.device do
+          xml.key device.key
+          xml.state device.missing
+          xml.title device.name
+        end
+      end
+    end
+  end
+
   class Setup_Verify < Sinatra::Base
 
     get '/:id.xml' do
